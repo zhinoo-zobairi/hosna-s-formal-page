@@ -1,5 +1,5 @@
 :root {
-  --background-primary-color: #ffdfe4;
+  --background-primary-color: #f8d5d2;
   --background-secondary-color: #5f6366;
 }
 .content-container {
@@ -20,7 +20,7 @@ body {
 .rectangle {
   width: 735px;
   height: 789px;
-  background-color: #ffdfe4;
+  background-color: var(--background-primary-color);
   clip-path: polygon(0 0, 100% 0, 84% 100%, 0 100%);
 }
 
@@ -29,19 +29,23 @@ body {
   max-width: 42%;
 }
 
-.hero h2,
-h3 {
-  font-size: 30px;
-  font-weight: lighter;
-}
-.hero h1 {
-  font-size: 40px;
-  line-height: 2;
-}
 .btn-branding {
   background: var(--background-secondary-color);
   border-radius: 4px;
   color: #ffdfe4;
   font-size: 18px;
   margin-top: 25px;
+}
+p {
+  line-height: 30px;
+}
+@media (max-width: 900px) {
+  h1 {
+    font-size: 30px;
+  }
+  .hero h2,
+  h3 {
+    font-size: 20px;
+    font-weight: lighter;
+  }
 }
