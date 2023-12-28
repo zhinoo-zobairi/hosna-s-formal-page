@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+      integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/2a15033da7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/style.css" />
+    <title>Doctor Appointment Booking</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="nav-link" href="index.html">نۆرینگە</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="#">خزمەتگوزاریەکان</a>
+            <a class="nav-link" href="#">سەبارەت بە ئێمە</a>
+            <a class="nav-link" href="#">پەیوەندی</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <h2>لێرە نۆگەیک بگرە</h2>
+      <form id="appointment-form">
+        <div class="form-group">
+          <label for="firstName">پێشناو</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="lastName">پاشناو</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="phoneNumber">ژمارە مۆبایل</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phoneNumber"
+            name="phoneNumber"
+            required
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="service">کام لە خزمەتگوزارییەکانت پێویستە؟</label>
+          <select
+            class="form-control"
+            id="service"
+            name="service"
+            required
+            onchange="updateCalendar()"
+          >
+            <option value="service1">
+              ڕاوێژکاری (بۆ نەشتەرگەری و جوانکاری پێست)
+            </option>
+            <option value="service2">پشکنین(گوێ، قوڕگ یان لووت)</option>
+            <option value="service3">لێدانی دەرزی بۆتاکس</option>
+            <option value="service3">لێدانی دەرزی فیللەر</option>
+            <option value="service3">مێزۆتراپی</option>
+            <option value="service3">نەشتەرگەری بووچک</option>
+          </select>
+        </div>
+        <div class="form-group" id="calendarContainer">
+          <!-- Calendar will be inserted here -->
+        </div>
+        <button type="submit" class="btn btn-primary">Book Appointment</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // JavaScript for updating the calendar goes here
+    </script>
+  </body>
+</html>
+<script>
+  function updateCalendar() {
+    const service = document.getElementById("service").value;
+
+    // Example: Fetch available slots from the server
+    fetch(`/available-slots/${service}`)
+      .then((response) => response.json())
+      .then((slots) => {
+        const calendarContainer = document.getElementById("calendarContainer");
+        calendarContainer.innerHTML = ""; // Clear previous calendar
+
+        // Generate calendar with available and blocked slots
+        slots.forEach((slot) => {
+          const slotElement = document.createElement("button");
+          slotElement.classList.add(
+            "btn",
+            slot.isAvailable ? "btn-success" : "btn-danger"
+          );
+          slotElement.innerText = slot.time;
+          slotElement.disabled = !slot.isAvailable;
+          calendarContainer.appendChild(slotElement);
+        });
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+
+  document
+    .getElementById("appointment-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var phoneNumber = document.getElementById("phoneNumber").value;
+      var service = document.getElementById("service").value;
+
+      // Add code to handle form submission, like sending data to the server
+    });
+</script>
