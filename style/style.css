@@ -2,6 +2,14 @@
   --background-primary-color: #f8d5d2;
   --background-secondary-color: #5f6366;
 }
+a {
+  color: #5f6366;
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
 .content-container {
   color: #5f6366;
   text-align: center;
@@ -45,10 +53,36 @@ p {
   }
   .hero h2,
   h3 {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: lighter;
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rectangle {
+    width: auto;
+    height: auto;
+  }
+  .about {
+    text-align: center;
   }
 }
 .mb-custom {
   margin-bottom: 200px;
+}
+.about {
+  padding-top: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  background-color: #f8d5d2;
+  height: 758px;
+}
+.about-text {
+  line-height: 30px;
+  margin: 30px;
+}
+#biography {
+  border-radius: 20px;
 }
