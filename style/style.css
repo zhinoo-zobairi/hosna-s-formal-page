@@ -15,6 +15,10 @@ img {
   text-align: center;
   padding: 260px 0;
 }
+.work-content-container {
+  color: #5f6366;
+  text-align: center;
+}
 .hero {
   background-color: var(--background-secondary-color);
   position: relative;
@@ -77,7 +81,6 @@ p {
   padding-right: 50px;
   padding-left: 50px;
   background-color: #f8d5d2;
-  height: 758px;
 }
 .about-text {
   line-height: 30px;
